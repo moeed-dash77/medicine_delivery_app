@@ -1,19 +1,20 @@
 package com.example.medicinedeliveryapp
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
+import android.os.Parcelable
 import android.view.MenuItem
+import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentTransaction
+import com.example.medicinedeliveryapp.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.appbar_main.*
+import kotlinx.parcelize.Parcelize
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+@Parcelize
+class MainActivity : Parcelable, AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var homeFragment: HomeFragment
     lateinit var workFragment: WorkFragment
@@ -21,11 +22,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var timelineFragment: TimelineFragment
     lateinit var settingFragment: SettingFragment
     lateinit var logoutFragment: LogoutFragment
+    lateinit var binding : ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setSupportActionBar(findViewById(R.id.toolbar))
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val toolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+
 
         val actionBar = supportActionBar
         actionBar?.title = "Medicine Delivery App"
@@ -33,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val drawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle (
             this,
             drawerLayout,
-            toolbar,
+            toolBar,
             (R.string.nav_app_bar_open_drawer_description),
             (R.string.nav_app_bar_navigate_up_description)
         ){
@@ -43,17 +52,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        navView.setNavigationItemSelectedListener(this)
 
-        homeFragment = HomeFragment()
+        workFragment = WorkFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout, homeFragment)
+            .replace(R.id.frame_layout, workFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         when (menuItem.itemId){
             R.id.home -> {
                 homeFragment = HomeFragment()
@@ -109,6 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START)
         }

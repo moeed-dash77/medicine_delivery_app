@@ -9,12 +9,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineDeliveryApp">
         <activity
+            android:name=".UISelectionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_uiselection"
+            android:theme="@style/Theme.MedicineDeliveryApp.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MedicineDeliveryApp.NoActionBar">
-
-        </activity>
-        <activity android:name=".SplashActivity" android:theme="@style/Theme.MedicineDeliveryApp.Splash">
+            android:theme="@style/Theme.MedicineDeliveryApp.NoActionBar" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.MedicineDeliveryApp.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
