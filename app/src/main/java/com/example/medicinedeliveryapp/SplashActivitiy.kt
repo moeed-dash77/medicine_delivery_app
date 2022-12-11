@@ -32,7 +32,7 @@ class SplashActivity : AppCompatActivity(){
         val image = findViewById<ImageView>(R.id.imageView)
         image.animation = fadeOut
         Handler().postDelayed({
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashActivity, uiSelectionActivity::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_SCREEN_TIMEOUT.toLong())

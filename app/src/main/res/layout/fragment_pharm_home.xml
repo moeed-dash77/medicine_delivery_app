@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SchoolFragment">
+    android:id="@+id/PharmHomeFragment"
+    tools:context=".PharmHomeFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="School Fragment"
+        android:text="Pharmaceutical Home"
         android:textSize="30sp"
         android:gravity="center"
         android:layout_centerInParent="true"/>

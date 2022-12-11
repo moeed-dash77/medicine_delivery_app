@@ -3,7 +3,6 @@ package com.example.medicinedeliveryapp
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -14,11 +13,11 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class MainActivity : Parcelable, AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class PharmaceuticalActivity : Parcelable, AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var homeFragment: HomeFragment
+    lateinit var pharmHomeFragment: PharmHomeFragment
     lateinit var workFragment: WorkFragment
-    lateinit var schoolFragment: SchoolFragment
+    lateinit var storeManagerFragment: PharmStoreManagerFragment
     lateinit var timelineFragment: TimelineFragment
     lateinit var settingFragment: SettingFragment
     lateinit var logoutFragment: LogoutFragment
@@ -54,10 +53,10 @@ class MainActivity : Parcelable, AppCompatActivity(), NavigationView.OnNavigatio
 
         navView.setNavigationItemSelectedListener(this)
 
-        workFragment = WorkFragment()
+        pharmHomeFragment = PharmHomeFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout, workFragment)
+            .replace(R.id.frame_layout, pharmHomeFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
     }
@@ -65,11 +64,11 @@ class MainActivity : Parcelable, AppCompatActivity(), NavigationView.OnNavigatio
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         when (menuItem.itemId){
-            R.id.home -> {
-                homeFragment = HomeFragment()
+            R.id.pharm_home -> {
+                pharmHomeFragment = PharmHomeFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_layout, homeFragment)
+                    .replace(R.id.frame_layout, pharmHomeFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
@@ -80,11 +79,11 @@ class MainActivity : Parcelable, AppCompatActivity(), NavigationView.OnNavigatio
                     .replace(R.id.frame_layout, workFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
-            }R.id.school -> {
-            schoolFragment = SchoolFragment()
+            }R.id.pharm_store_manager -> {
+            storeManagerFragment = PharmStoreManagerFragment()
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.frame_layout, schoolFragment)
+                .replace(R.id.frame_layout, storeManagerFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
             }
