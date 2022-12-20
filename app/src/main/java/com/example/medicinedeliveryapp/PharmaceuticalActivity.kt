@@ -63,6 +63,13 @@ class PharmaceuticalActivity : Parcelable, AppCompatActivity(), NavigationView.O
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        menuItem.setCheckable(true)
+        menuItem.setChecked(true)
+        var mPreviousMenuItem = menuItem
+        if (mPreviousMenuItem != null){
+            mPreviousMenuItem.setChecked(false)
+        }
+
         when (menuItem.itemId){
             R.id.pharm_home -> {
                 pharmHomeFragment = PharmHomeFragment()

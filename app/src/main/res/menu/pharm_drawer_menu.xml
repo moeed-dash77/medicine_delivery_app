@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/nav_pharm">
         <item
             android:id="@+id/pharm_home"
             android:title="Order Management"
@@ -23,8 +24,8 @@
             android:icon="@drawable/ic_action_timeline"/>
     </group>
 
-    <item android:title="Controls">
-        <menu>
+    <group
+        android:id="@+id/nav_controls">
             <item
                 android:id="@+id/setting"
                 android:title="Setting"
@@ -33,7 +34,7 @@
                 android:id="@+id/logout"
                 android:title="Logout"
                 android:icon="@drawable/ic_action_timeline"/>
-        </menu>
-    </item>
+    </group>
+
 
 </menu>
